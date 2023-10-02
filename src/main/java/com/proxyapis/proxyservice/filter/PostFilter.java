@@ -3,6 +3,7 @@ package com.proxyapis.proxyservice.filter;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
+import com.proxyapis.proxyservice.config.Context;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,6 +28,7 @@ public class PostFilter extends ZuulFilter {
 
     @Override
     public Object run() throws ZuulException {
+        final Context context = Context.getInstance();
         HttpServletResponse httpServletResponse = RequestContext.getCurrentContext().getResponse();
         logger.info("PostFilter " + httpServletResponse.getStatus());
         return null;
