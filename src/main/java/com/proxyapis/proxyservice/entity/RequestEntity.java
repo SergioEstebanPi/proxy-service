@@ -3,13 +3,14 @@ package com.proxyapis.proxyservice.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.redis.core.RedisHash;
 
 import java.io.Serializable;
 import java.util.Date;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
+@RedisHash("Request")
 public class RequestEntity implements Serializable {
     private String id;
     private String ip;

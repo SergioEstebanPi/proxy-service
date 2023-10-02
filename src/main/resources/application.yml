@@ -3,7 +3,7 @@ spring:
     name: proxy-service
 
 server:
-  port: 8081
+  port: 8080
   servlet:
     context-path: /
 
@@ -11,26 +11,31 @@ zuul:
   routes:
     api:
       path: /**
-      url: http://localhost:8080/
+      url: http://localhost:8083/
   ratelimit:
     enabled: true
     repository: REDIS
     policy-list:
       api:
-        - limit: 5
-          refresh-interval: 10
+        - limit: 15
+          refresh-interval: 2
           type:
             - url
-        - limit: 5
-          refresh-interval: 10
-          type:
-            - origin
-        - limit: 10
-          refresh-interval: 10
-          type:
-            - origin
-            - url
+        #- limit: 5
+        #  refresh-interval: 10
+        #  type:
+        #    - origin
+        #- limit: 10
+        #  refresh-interval: 10
+        #  type:
+        #    - origin
+        #    - url
 
+control-service:
+  ribbon:
+    eureka:
+      enabled: true
+    listOfServers: http://localhost:8081
 
 management:
   endpoints:

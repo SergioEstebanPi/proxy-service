@@ -36,7 +36,7 @@ public class PreFilter extends ZuulFilter {
         context.setDuration(System.currentTimeMillis());
         RequestContext requestContext = RequestContext.getCurrentContext();
         HttpServletRequest httpServletRequest = requestContext.getRequest();
-        logger.info("PreFilter " + httpServletRequest.getMethod() + " " + httpServletRequest.getRequestURL());
+        logger.info(">>[" + httpServletRequest.getMethod() + " " + httpServletRequest.getRequestURL() + "]");
         return null;
     }
 }
